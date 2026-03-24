@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "title": "Login page throws 500 error",
+    "description": "Users get a server error after submitting valid credentials on the login form.",
+    "status": "open",
+    "priority": "high",
+    "reporter_id": 101,
+    "created_at": "2026-03-24T11:05:00"
+  },
+  {
+    "id": 2,
+    "title": "Profile image not updating",
+    "description": "Uploading a new profile image succeeds, but the old image still appears after refresh.",
+    "status": "in_progress",
+    "priority": "medium",
+    "reporter_id": 102,
+    "created_at": "2026-03-24T11:10:00"
+  },
+  {
+    "id": 3,
+    "title": "API response is slow on issue list",
+    "description": "Fetching more than 200 issues takes over 8 seconds in staging.",
+    "status": "resolved",
+    "priority": "critical",
+    "reporter_id": 103,
+    "created_at": "2026-03-24T11:15:00"
+  },
+  {
+    "id": 4,
+    "title": "Typo in dashboard heading",
+    "description": "Dashboard heading shows 'Welcom' instead of 'Welcome'.",
+    "status": "closed",
+    "priority": "low",
+    "reporter_id": 104,
+    "created_at": "2026-03-24T11:20:00"
+  },
+  {
+    "id": 5,
+    "title": "Email notifications sent twice",
+    "description": "Issue assignment triggers duplicate email notifications to the assignee.",
+    "status": "open",
+    "priority": "high",
+    "reporter_id": 105,
+    "created_at": "2026-03-24T11:25:00"
+  },
+  {
+    "id": 6,
+    "title": "Login page throws 504 error",
+    "description": "Users get a server error .",
+    "status": "open",
+    "priority": "low",
+    "reporter_id": 106,
+    "created_at": "2026-03-24T12:05:00"
+  },
+  {
+    "id": 7,
+    "title": "Login page throws 504 error",
+    "description": "Users get a server error .",
+    "status": "open",
+    "priority": "low",
+    "reporter_id": 106,
+    "created_at": "2026-03-24T12:05:00"
+  },
+  {
+    "id": 7,
+    "title": "Login page throws 504 error",
+    "description": "Users get a server error .",
+    "status": "open",
+    "priority": "low",
+    "reporter_id": 106,
+    "created_at": "2026-03-24T12:05:00"
+  },
+  {
+    "id": 7,
+    "title": "Login page throws 504 error",
+    "description": "Users get a server error .",
+    "status": "open",
+    "priority": "low",
+    "reporter_id": 106,
+    "created_at": "2026-03-24T12:05:00"
+  }
+]
