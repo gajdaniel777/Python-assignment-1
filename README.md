@@ -1,93 +1,79 @@
-# Python Assignment - Issues API
+# EventHub - Event Ticketing API
 
-Simple Django + DRF API that reads/writes issues from `issues.json`.
+A Django REST API where you can create events, book seats, and cancel reservations.
 
-## How To Run The Project
+## How to Run
 
-1. Clone the repo and open terminal in project root.
-2. Create virtual environment (if not created yet):
-   - `python -m venv .venv`
-3. Activate venv (Windows PowerShell):
-   - `.\.venv\Scripts\Activate.ps1`
-4. Install dependencies:
-   - `python -m pip install -r requirements.txt`
-5. Start server:
-   - `python manage.py runserver`
+```
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
 
-Server URL: `http://127.0.0.1:8000/`
+Server runs at `http://127.0.0.1:8000/`
 
-## API Endpoints
+## Endpoints
 
-Base path: `/api/issues/`
+### Events
 
-### 1) Get all issues
+- `GET /api/events/` - get all events
+- `POST /api/events/` - create an event
+- `GET /api/events/1/` - get one event
+- `PUT /api/events/1/` - update an event
+- `DELETE /api/events/1/` - delete an event
+- `GET /api/events/?status=upcoming` - filter by status
+- `GET /api/events/?venue=hall` - search by venue name
 
-- **Method:** `GET`
-- **URL:** `http://127.0.0.1:8000/api/issues/`
-- **What it does:** Returns the full list from `issues.json`.
+### Reservations
 
-### 2) Get issue by id
+- `GET /api/reservations/` - get all reservations
+- `POST /api/reservations/` - book seats for an event
+- `GET /api/reservations/1/` - get one reservation
+- `DELETE /api/reservations/1/` - delete a reservation
+- `GET /api/reservations/?event_id=1` - filter by event
+- `POST /api/reservations/1/cancel/` - cancel a booking (gives seats back)
 
-- **Method:** `GET`
-- **URL:** `http://127.0.0.1:8000/api/issues/?id=1`
-- **What it does:** Returns one issue matching `id`.
-
-### 3) Filter issues by status
-
-- **Method:** `GET`
-- **URL:** `http://127.0.0.1:8000/api/issues/?status=open`
-- **What it does:** Returns all issues where status equals provided value.
-
-### 4) Create new issue
-
-- **Method:** `POST`
-- **URL:** `http://127.0.0.1:8000/api/issues/`
-- **Body (JSON):**
+## Sample Request - Create Event
 
 ```json
+POST /api/events/
 {
-  "id": 7,
-  "title": "Login page throws 504 error",
-  "description": "Users get a server error.",
-  "status": "open",
-  "priority": "low",
-  "reporter_id": 106,
-  "created_at": "2026-03-24T12:05:00"
+  "title": "Django Conference",
+  "venue": "Convention Center",
+  "date": "2026-06-15",
+  "total_seats": 100,
+  "available_seats": 100
 }
 ```
 
-- **What it does:** Appends the new issue to `issues.json` and returns created object.
-- We are not using any models here as the topic is not yet done.
+## Sample Request - Book Seats
+
+```json
+POST /api/reservations/
+{
+  "event": 1,
+  "attendee_name": "Jane Doe",
+  "attendee_email": "jane@example.com",
+  "seats_reserved": 2
+}
+```
 
 ## Design Decision
 
-I kept both `GET` and `POST` on the same endpoint (`/api/issues/`) and routed logic by HTTP method inside one view function.
+I used `select_for_update()` with `transaction.atomic()` when booking seats. This locks the event row in the database so if two people try to book the last seat at the same time, only one gets it. Without this, both could succeed and seats would go negative.
 
-**Why:**  
-This keeps the API simple and REST-style:
-- same resource path for read/create
-- less URL duplication
-- easier testing in Postman
+## Postman Screenshots
 
-## Postman Testing Evidence
+### Create Event (201 Created)
 
-### Success screenshots
+![Create Event](docs/images/create-event-success.png)
 
-1. **GET filtered list (`status=open`)**
+### Successful Cancellation (200 OK)
 
-![GET status=open success](docs/images/get-status-open-success.png)
+![Cancel Success](docs/images/cancel-success.png)
 
-2. **GET by id (`id=1`)**
+### Already Cancelled (400 Bad Request)
 
-![GET id=1 success](docs/images/get-id-success.png)
-
-3. **POST create issue**
-
-![POST create issue success](docs/images/post-create-issue-success.png)
-
-### Failure example (endpoint tested)
-
-- **Endpoint:** `GET /api/issues/?id=9999`
-- **Expected result:** `{"error": "Issue not found"}`
-
-![GET id not found failure](docs/images/get-id-not-found-failure.png)
+![Already Cancelled](docs/images/cancel-already-cancelled.png)
