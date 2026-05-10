@@ -1,0 +1,102 @@
+[
+  {
+    "model": "eventhub.kbentry",
+    "pk": 1,
+    "fields": {
+      "question": "What is select_related in Django ORM?",
+      "answer": "select_related performs SQL JOIN and fetches related objects in one query.",
+      "category": "django",
+      "created_at": "2026-05-10T09:00:00Z"
+    }
+  },
+  {
+    "model": "eventhub.kbentry",
+    "pk": 2,
+    "fields": {
+      "question": "When should I use prefetch_related?",
+      "answer": "Use prefetch_related for many-to-many and reverse foreign key relationships.",
+      "category": "django",
+      "created_at": "2026-05-10T09:01:00Z"
+    }
+  },
+  {
+    "model": "eventhub.kbentry",
+    "pk": 3,
+    "fields": {
+      "question": "What is a JWT token?",
+      "answer": "JWT is a signed token used for stateless authentication and authorization.",
+      "category": "framework",
+      "created_at": "2026-05-10T09:02:00Z"
+    }
+  },
+  {
+    "model": "eventhub.kbentry",
+    "pk": 4,
+    "fields": {
+      "question": "How to optimize PostgreSQL search?",
+      "answer": "Use indexes on frequently filtered columns and inspect query plans regularly.",
+      "category": "database",
+      "created_at": "2026-05-10T09:03:00Z"
+    }
+  },
+  {
+    "model": "eventhub.kbentry",
+    "pk": 5,
+    "fields": {
+      "question": "How does transaction.atomic work?",
+      "answer": "transaction.atomic wraps operations in a transaction and rolls back on exception.",
+      "category": "database",
+      "created_at": "2026-05-10T09:04:00Z"
+    }
+  },
+  {
+    "model": "eventhub.kbentry",
+    "pk": 6,
+    "fields": {
+      "question": "What are DRF permissions?",
+      "answer": "Permissions decide whether an authenticated user can access a specific endpoint.",
+      "category": "framework",
+      "created_at": "2026-05-10T09:05:00Z"
+    }
+  },
+  {
+    "model": "eventhub.kbentry",
+    "pk": 7,
+    "fields": {
+      "question": "How do I use Q objects?",
+      "answer": "Q objects allow OR/AND combinations in query filters with complex conditions.",
+      "category": "django",
+      "created_at": "2026-05-10T09:06:00Z"
+    }
+  },
+  {
+    "model": "eventhub.kbentry",
+    "pk": 8,
+    "fields": {
+      "question": "What is a foreign key?",
+      "answer": "A foreign key links rows across tables and enforces relational integrity.",
+      "category": "database",
+      "created_at": "2026-05-10T09:07:00Z"
+    }
+  },
+  {
+    "model": "eventhub.kbentry",
+    "pk": 9,
+    "fields": {
+      "question": "Why use environment variables?",
+      "answer": "Environment variables keep sensitive configuration out of source code.",
+      "category": "general",
+      "created_at": "2026-05-10T09:08:00Z"
+    }
+  },
+  {
+    "model": "eventhub.kbentry",
+    "pk": 10,
+    "fields": {
+      "question": "What does authentication mean?",
+      "answer": "Authentication verifies who the user is before protected resources are accessed.",
+      "category": "general",
+      "created_at": "2026-05-10T09:09:00Z"
+    }
+  }
+]
