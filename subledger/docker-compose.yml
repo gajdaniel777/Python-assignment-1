@@ -1,0 +1,23 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: subledger
+      POSTGRES_PASSWORD: subledger
+      POSTGRES_DB: subledger
+    ports:
+      - "5433:5432"
+    volumes:
+      - subledger_pgdata:/var/lib/postgresql/data
+
+  api:
+    build: .
+    ports:
+      - "8001:8000"
+    environment:
+      DATABASE_URL: postgresql://subledger:subledger@db:5432/subledger
+    depends_on:
+      - db
+
+volumes:
+  subledger_pgdata:
